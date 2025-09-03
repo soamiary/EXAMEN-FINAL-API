@@ -27,7 +27,19 @@ def create_phones(phones: List[Phone]):
     return {
         "message": "Phones created successfully",
         "data": phones
-    }
+    } 
+
+
+phones_db: List[Phone] = []
+
+
+
+
+
+@app.get("/phones", response_model=List[Phone])
+def get_phones():
+    return phones_db
+
 
 
 
