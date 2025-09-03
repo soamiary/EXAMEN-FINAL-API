@@ -40,6 +40,15 @@ phones_db: List[Phone] = []
 def get_phones():
     return phones_db
 
+@app.get("/phones/{id}", response_model=Phone)
+def get_phone(id: str):
+    for phone in phones_db:
+        if phone.identifier == id:
+            return phone
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"Phone with id '{id}' not found"
+    )
 
 
 
