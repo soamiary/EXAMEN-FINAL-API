@@ -51,5 +51,13 @@ def get_phone(id: str):
     )
 
 
-
-
+@app.put("/phones/{id}/characteristics", response_model=Phone)
+def update_characteristics(id: str, new_char: Characteristics):
+    for phone in phones_db:
+        if phone.identifier == id:
+            phone.characteristics = new_char
+            return phone
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail=f"Phone with id '{id}' not found"
+    )
