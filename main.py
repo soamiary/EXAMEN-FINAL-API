@@ -1,7 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+
 
 app = FastAPI()
 
-@app.get("/ping")
-def ping():
-    return {"message": "pong"}
+
+@app.get("/health")
+def get_health():
+    return {"message": f"OK"}
+   
